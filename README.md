@@ -1,1 +1,3 @@
-# Web Dev Ladder
+
+Small projects to ace Frontend skills
+
