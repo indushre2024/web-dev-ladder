@@ -13,8 +13,10 @@
 
   /* typography */
   --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
-  --text: 0.95rem;
+  --text: 1rem;
   --text-sm: 0.875rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.25rem;
 
   /* brand (indigo) */
   --brand-600: #4f46e5;
@@ -27,12 +29,15 @@
   --text-color: #0b0c0f;
   --muted: #475569;
   --border: #e5e7eb;
-  --shadow: 0 1px 2px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.06);
+  --shadow: 0 1px 1px rgba(0,0,0,0.08), 4px 12px rgba(0,0,0,0.06);
 
   /* button defaults */
   --btn-bg: #111827;
   --btn-fg: #ffffff;
   --btn-border: transparent;
+  --btn-px: 1em;
+  --btn-py: 0.5em;
+  --btn-gap: 0.5rem;
 
   /* focus ring */
   --focus-ring: 0 0 0 var(--ring) rgba(79,70,229,0.55);
@@ -66,4 +71,44 @@ body {
     box-shadow: var(--shadow);
     padding: var(--space-3);
     margin:var(--space-2) 0;
+}
+
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: var(--btn-py) var(--btn-px);
+    gap: var(--btn-gap);
+    border-radius: var(--radius);
+    background-color: var(--btn-bg);
+    color: var(--btn-fg);
+    font-size: var(--text);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--btn-border);
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: var(--bg);
+    color: var(--btn-bg);
+}
+.btn:active{
+    transform: translateY(2px);
+}
+.btn:focus-visible { box-shadow: var(--focus-ring); outline: none; }
+
+.btn:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-sm{
+    font-size: var(--text-sm);
+}
+.btn-md{
+    font-size: var(--text-md);
+}
+.btn-lg{
+    font-size: var(--text-lg);
 }
