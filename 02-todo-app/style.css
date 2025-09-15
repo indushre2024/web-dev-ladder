@@ -1,0 +1,151 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+/* Tokens */
+:root{
+    --theme-color:rgb(0, 207, 190);
+    --bg-color:#292929;
+    --bg-color-1:rgb(28, 28, 28);
+    --text-color:rgb(168, 168, 168);
+    --secondary-color:#464646;
+    --radius: 15px;
+    --h1-size: 2.2rem;
+    --text-size: 1rem;
+    --font: roboto, sans-serif;
+}
+
+body{
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font);
+    font-size: var(--text-size);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.wrapper{
+    margin-top:40px;
+    width: min(500px, 90%);
+    /* background-color: var(--bg-color-1); */
+    background: transparent;
+    border-radius: var(--radius);
+    padding: 1em 2em;
+    height: 90vh;
+    box-shadow: 0 0 7px 1px var(--secondary-color);
+    backdrop-filter: blur;
+}
+
+.app-title{
+    margin: 1em 0;
+    text-align:center;
+    font-size: var(--h1-size);
+    color: var(--theme-color);
+}
+.new-todo{
+    position: relative;
+    margin: 0.5em 0;
+}
+.new-todo input{
+    font-size: inherit;
+    padding: 0.5em 1em;
+    width: 100%;
+    border-radius: calc(var(--radius) *1.5);
+    background: transparent;
+    border: 3px solid var(--secondary-color);
+    caret-color: var(--theme-color);
+    color: var(--text-color);
+}
+.new-todo input:focus{
+    outline: none;
+}
+
+.add-btn{
+    position:absolute;
+    top:0;
+    right:0;
+    font-size: inherit;
+    padding: 0.5em 1em;
+    border-radius: calc(var(--radius) *2);
+    border: none;
+    height: 100%;;
+    background-color: var(--theme-color);
+    cursor: pointer;
+    transition: 100ms ease;
+}
+
+.add-btn:active{
+    transform : translateY(5px);
+}
+
+.todos li{
+    background-color: var(--secondary-color);
+    list-style: none;
+    padding: 0.5em 1em;
+    border-radius: var(--radius);
+    margin: 0.25em 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.todos li .todo-text{
+    flex:1;
+    cursor: pointer;
+    transition: 200ms ease;
+}
+
+.todos li .delete-btn{
+    font-size: inherit;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    fill: var(--text-color);
+}
+
+.todos li .delete-btn svg:hover{
+    fill: rgb(207, 1, 1);
+    transition: fill 0.6s ease;
+}
+
+.todos li .custom-checkbox svg{
+    border: 2px solid var(--theme-color);
+    border-radius: 50%;
+    margin-right: 0.5em;
+    cursor: pointer;
+}
+
+.todos li input[type="checkbox"]{
+    display: none;
+}
+.todos li input[type="checkbox"]:checked ~ .custom-checkbox svg{
+    background-color: var(--theme-color);
+    fill: var(--bg-color);
+    transition: 200ms ease;
+}
+
+.todos li input[type="checkbox"]:checked ~ .todo-text{
+    text-decoration: line-through;
+    color: var(--text-color);
+}
+
+@media (max-width:500px){
+    .wrapper{
+        width:100%;
+        height: 100vh;
+        margin:0;
+        border-radius:0;
+        box-shadow: none;
+        padding:1em 1em;
+    }
+
+    .new-todo .add-btn{
+        position:unset;
+        width: 100%;
+        margin:0.5rem 0 0 0;
+    }
+}
