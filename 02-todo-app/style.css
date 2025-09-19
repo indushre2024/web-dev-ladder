@@ -8,7 +8,7 @@
 :root{
     --theme-color:rgb(0, 207, 190);
     --bg-color:#292929;
-    --bg-color-1:rgb(28, 28, 28);
+    --bg-color-1:rgb(33, 33, 33);
     --text-color:rgb(168, 168, 168);
     --secondary-color:#464646;
     --radius: 15px;
@@ -31,13 +31,14 @@ body{
 .wrapper{
     margin-top:40px;
     width: min(500px, 90%);
-    /* background-color: var(--bg-color-1); */
-    background: transparent;
+    background-color: var(--bg-color-1);
     border-radius: var(--radius);
     padding: 1em 2em;
     height: 90vh;
-    box-shadow: 0 0 7px 1px var(--secondary-color);
+    box-shadow: 0 0 10px 2px var(--secondary-color);
     backdrop-filter: blur;
+    display: flex;
+    flex-direction: column;
 }
 
 .app-title{
@@ -88,6 +89,8 @@ body{
 
 .todos{
     padding: 1rem 0.5rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .todos li{
@@ -98,13 +101,17 @@ body{
     margin: 0.25em 0;
     display: flex;
     align-items: center;
-    cursor: move;
+    cursor: pointer;
+}
+
+.todos li:hover{
+    background-color: #626262;
 }
 
 .todos li .todo-text{
     flex:1;
     transition: 200ms ease;
-    cursor: move;
+    cursor: pointer;
 }
 
 .todos li .delete-btn{

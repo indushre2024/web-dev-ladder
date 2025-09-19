@@ -3,6 +3,10 @@ const form = document.querySelector('.new-todo');
 const todo_input = document.getElementById('todo');
 const todo_list = document.querySelector('.todos');
 
+let todoItems = [...document.querySelectorAll(".todos li")];
+let oInd;
+let endInd;
+
 display_todos();
 function saveTodos(){
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -22,6 +26,31 @@ function create_todo_item(todo, todo_id){
     return li_item;
 }
 
+// todoItems.forEach(card=>{
+//     card.addEventListener("dragstart",e=>{
+//         oInd = todoItems.indexOf(card);
+//         card.classList.add("dragging");
+//     });
+//     card.addEventListener("dragend",e=>{
+//         card.classList.remove("dragging");
+//         todoItems = [...document.querySelectorAll(".todos li")];
+//         endInd = todoItems.indexOf(card);
+//         const content = todos.splice(oInd,1)[0];
+//         todos.splice(endInd,0,content);
+//         saveTodos();
+//     });
+// });
+
+
+todo_list.addEventListener("dragover",e=>{
+    e.preventDefault();
+    const targetTodo = getBelowTodo(e.clientY).element || undefined;
+    const drag = document.querySelector(".dragging");
+    if(targetTodo){
+        todo_list.insertBefore(drag,targetTodo);
+    }else todo_list.append(drag);
+})
+
 function display_todos(){
     todo_list.innerHTML = '';
     todos.forEach((todo,index)=>{
@@ -40,6 +69,19 @@ function display_todos(){
             todos[index].complete = checkBox.checked;
             saveTodos();
         })
+        liItem.addEventListener("dragstart",e=>{
+            todoItems = [...document.querySelectorAll(".todos li")];
+            oInd = todoItems.indexOf(liItem);
+            liItem.classList.add("dragging");
+        });
+        liItem.addEventListener("dragend",e=>{
+            liItem.classList.remove("dragging");
+            todoItems = [...document.querySelectorAll(".todos li")];
+            endInd = todoItems.indexOf(liItem);
+            const content = todos.splice(oInd,1)[0];
+            todos.splice(endInd,0,content);
+            saveTodos();
+        });
     })
 }
 
@@ -53,36 +95,6 @@ form.addEventListener('submit', function(e){
     }
     todo_input.value = '';
 });
-
-let todoItems = [...document.querySelectorAll(".todos li")];
-let oInd;
-let endInd;
-
-todoItems.forEach(card=>{
-    card.addEventListener("dragstart",e=>{
-        oInd = todoItems.indexOf(card);
-        card.classList.add("dragging");
-    });
-    card.addEventListener("dragend",e=>{
-        card.classList.remove("dragging");
-        todoItems = [...document.querySelectorAll(".todos li")];
-        endInd = todoItems.indexOf(card);
-        const content = todos.splice(oInd,1)[0];
-        todos.splice(endInd,0,content);
-        saveTodos();
-    });
-});
-
-todo_list.addEventListener("dragover",e=>{
-    e.preventDefault();
-    const targetTodo = getBelowTodo(e.clientY).element || undefined;
-    const drag = document.querySelector(".dragging");
-    if(targetTodo){
-        todoItems = [...document.querySelectorAll(".todos li")];
-        let ind = todoItems.indexOf(targetTodo);
-        todo_list.insertBefore(drag,targetTodo);
-    }else todo_list.append(drag);
-})
 
 function getBelowTodo(y){
     const todoCards = [...document.querySelectorAll(".todos li:not(.dragging)")];
