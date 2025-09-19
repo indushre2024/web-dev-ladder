@@ -82,6 +82,14 @@ body{
     transform : translateY(5px);
 }
 
+.dragging{
+    opacity:0.5;
+}
+
+.todos{
+    padding: 1rem 0.5rem;
+}
+
 .todos li{
     background-color: var(--secondary-color);
     list-style: none;
@@ -90,20 +98,20 @@ body{
     margin: 0.25em 0;
     display: flex;
     align-items: center;
-    cursor: pointer;
+    cursor: move;
 }
 
 .todos li .todo-text{
     flex:1;
-    cursor: pointer;
     transition: 200ms ease;
+    cursor: move;
 }
 
 .todos li .delete-btn{
     font-size: inherit;
     background-color: transparent;
     border: none;
-    cursor: pointer;
+    /* cursor: pointer; */
     fill: var(--text-color);
 }
 
@@ -116,7 +124,7 @@ body{
     border: 2px solid var(--theme-color);
     border-radius: 50%;
     margin-right: 0.5em;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .todos li input[type="checkbox"]{
