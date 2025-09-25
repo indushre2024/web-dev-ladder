@@ -37,8 +37,6 @@ function checkGameOver(content){
     const emptyBoxes = document.querySelectorAll(".box:not(.box-full)");
     if(emptyBoxes.length==0){
         isGameOver = true;
-        alert("Match is a draw, restarting the game");
-        resetGame();
     }
     if(boxes[0].textContent == content && boxes[1].textContent == content && boxes[2].textContent == content){
         isGameOver = true;
